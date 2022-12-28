@@ -1,6 +1,7 @@
 from datetime import datetime
 import pyautogui as pag
 import keyboard
+import time
 import tkinter as tk
 
 # Declares bools
@@ -25,6 +26,7 @@ def on_closing():
     exit()
 
 def toggle_clicks():
+    global canClick
     canClick = not canClick
     if canClick:
         click_btn.configure(fg="#73f473")
@@ -32,7 +34,9 @@ def toggle_clicks():
         click_btn.configure(fg="#ff6868")
 
 def start_clock():
+    global canRun
     canRun = not canRun
+    print(canRun)
     if canRun:
         toggle_btn.configure(fg="#73f473")
     else:
@@ -63,11 +67,11 @@ while True:
     hour = datetime.now().hour
     minute = datetime.now().minute
     second = datetime.now().second
-    clock = str(hour)+":"+str(minute)+":"+str(second)
+    clock = f"{hour:02}:{minute:02}:{second:02}"
 
     timeLabel.configure(text=(clock))
 
-    while canRun:
+    if canRun:
         x = second * xSpread
         y = minute * ySpread + pag.size().height / 4
         pag.moveTo(x,y)
@@ -78,8 +82,11 @@ while True:
         exit_app()
     if keyboard.is_pressed("u"):
         toggle_clicks()
+        time.sleep(0.1)
     if keyboard.is_pressed("y"):
         start_clock()
+        time.sleep(0.1)
+
     
     window.protocol("WM_DELETE_WINDOW", on_closing)
     window.update()
