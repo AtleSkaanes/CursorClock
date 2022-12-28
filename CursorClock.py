@@ -36,7 +36,6 @@ def toggle_clicks():
 def start_clock():
     global canRun
     canRun = not canRun
-    print(canRun)
     if canRun:
         toggle_btn.configure(fg="#73f473")
     else:
