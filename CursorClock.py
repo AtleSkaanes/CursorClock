@@ -15,6 +15,7 @@ window.columnconfigure(1, minsize=100, weight=1)
 window.config(bg="#444")
 window.title('Cursor Clock')
 window.geometry("300x200+10+20")
+window.attributes('-topmost',True)
 
 # Functions
 def exit_app():
@@ -45,10 +46,10 @@ def start_clock():
 exit_btn = tk.Button(text="exit (i)",command=exit_app)
 exit_btn.grid(row=1, column=0, sticky="ew", padx=5, pady=5)
 
-click_btn = tk.Button(text="Allow clicks (u)", command=toggle_clicks)
+click_btn = tk.Button(text="Allow clicks (u)",fg="#ff6868", command=toggle_clicks)
 click_btn.grid(row=1, column=1, sticky="ew", padx=5, pady=5)
 
-toggle_btn = tk.Button(text="toggle (y)", command=start_clock)
+toggle_btn = tk.Button(text="toggle (y)",fg="#ff6868", command=start_clock)
 toggle_btn.grid(row=1, column=2, sticky="ew", padx=5, pady=5)
 
 # text
@@ -81,10 +82,10 @@ while True:
         exit_app()
     if keyboard.is_pressed("u"):
         toggle_clicks()
-        time.sleep(0.1)
+        time.sleep(0.2)
     if keyboard.is_pressed("y"):
         start_clock()
-        time.sleep(0.1)
+        time.sleep(0.2)
 
     
     window.protocol("WM_DELETE_WINDOW", on_closing)
